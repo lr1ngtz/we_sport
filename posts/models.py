@@ -11,6 +11,7 @@ class Post(BaseModel):
     content = models.TextField()
     topics = models.ManyToManyField("Topic")
     likes = models.PositiveIntegerField()
+    dislikes = models.PositiveIntegerField()
     is_moderated = models.BooleanField(default=False)
 
     def __str__(self):
@@ -41,10 +42,9 @@ class ExerciseInfo(BaseModel):
     exercises = models.ManyToManyField(Exercise)
 
 
-# class Comment(BaseModel):
-#     # Maybe it's a good idea to move comments to the
-#     # separate DB?
-#
-#     # owner = models.ForeignKey(User, on_delete=models.CASCADE)
-#     content = models.TextField()
-#     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+class Comment(BaseModel):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    likes = models.PositiveIntegerField()
+    dislikes = models.PositiveIntegerField()
