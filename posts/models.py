@@ -23,11 +23,17 @@ class Topic(BaseModel):
     title = models.CharField(max_length=128)
     description = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.title
+
 
 class Workout(BaseModel):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=128)
     description = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
 
 
 class Exercise(BaseModel):
@@ -35,6 +41,9 @@ class Exercise(BaseModel):
     description = models.CharField(max_length=255)
     execution_time = models.TimeField(blank=True, null=True)
     workout = models.ForeignKey(Workout, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
 
 
 class ExerciseInfo(BaseModel):
